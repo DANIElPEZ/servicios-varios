@@ -9,11 +9,6 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
      <link rel="stylesheet" href="./../../css/index.css">
      <script type="module" src="./../../js/input.js"></script>
-     <script type="module">
-          document.querySelector('.user-logout').addEventListener('click', () => {
-               window.location.href = "../../connection/logout.php";
-          });
-     </script>
 </head>
 
 <body>
@@ -36,7 +31,9 @@
                                    <h4 class="username"><?php echo $_SESSION['username'] ?></h4>
                                    <img class="img-username" src="./../../assets/DNV.png" alt="perfil de ejemplo">
                               </div>
+<form action="./../../connection/logout.php">
                               <button class="material-symbols-outlined user-logout">logout</button>
+</form>
                          </div>
                     <?php } ?>
                </ul>
