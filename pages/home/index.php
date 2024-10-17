@@ -31,9 +31,9 @@
                                    <h4 class="username"><?php echo $_SESSION['username'] ?></h4>
                                    <img class="img-username" src="./../../assets/DNV.png" alt="perfil de ejemplo">
                               </div>
-<form action="./../../connection/logout.php">
-                              <button class="material-symbols-outlined user-logout">logout</button>
-</form>
+                              <form action="./../../connection/logout.php">
+                                   <button class="material-symbols-outlined user-logout">logout</button>
+                              </form>
                          </div>
                     <?php } ?>
                </ul>
@@ -64,8 +64,24 @@
                </ul>
           </nav>
      </aside>
-     <main></main>
-     <footer></footer>
+     <main class="servicios-grid">
+          <div class="servicios-grid-item">
+               <h4>Reparacion de motor</h4>
+               <p>Se repara motor, de carro, moto, bicicleta, electrico, avion, barco, submarino, rancio, humano, elefante, pajaro, pez, rana, computador, reactor, nuclear</p>
+          </div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+          <div class="servicios-grid-item"></div>
+     </main>
 </body>
 
 </html>

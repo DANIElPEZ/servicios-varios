@@ -2,11 +2,15 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
   list-style: none;
   text-decoration: none;
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  left: 0;
   width: 100%;
   background-color: #efefef;
   box-shadow: 0 4px 15px #00000023;
@@ -91,7 +95,7 @@
 }
 
 .main-section {
-  position: relative;
+  position: sticky;
   width: 250px;
   height: 100%;
   background-color: #dadaff;
@@ -174,6 +178,42 @@ nav ul li {
   color: #444;
 }
 
+.servicios-grid{
+  padding: 1.4rem;
+  margin-left: 250px;
+  display: grid;
+  width: calc(100%-250px);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.servicios-grid-item{
+  background-color: rgb(63, 97, 148);
+  width: 190px;
+  height: 190px;
+  border-radius: 14px;
+  color: #fff;
+  padding: 20px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  transition: height 0.3s ease;
+  interpolate-size: allow-keywords;
+  >h4{
+    margin-bottom: 0.6rem;
+    font-weight: 800;
+  }
+  >p{
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+}
+
+.servicios-grid-item:hover{
+  height: auto;
+}
+
 @media screen and (max-width: 730px) {
   .main-section {
     width: 70px;
@@ -213,5 +253,11 @@ nav ul li {
     width: 200px;
     opacity: 1;
     visibility: visible;
+  }
+
+  .servicios-grid{
+    margin-left: 70px;
+    width: calc(100%-70px);
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 }
