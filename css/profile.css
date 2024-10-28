@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 64px;
   background-color: #007bff;
   position: sticky;
   top: 0;
@@ -21,8 +21,8 @@
 
 ul{
      display: flex;
-     justify-content: space-between;
-     width: 160px;
+     justify-content: center;
+     gap: 0 20px;
 }
 
 .home,

@@ -1,1 +1,0 @@
-<?php //validacion si tiene o no servicio?>

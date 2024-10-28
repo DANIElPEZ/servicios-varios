@@ -1,13 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Document</title>
+     <title>Contratos</title>
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
      <link rel="shortcut icon" href="./../../assets/favicon.ico" type="image/x-icon">
      <link rel="stylesheet" href="./../../css/contratos.css">
+     <link rel="stylesheet" href="./../../css/scroll_bar.css">
 </head>
+
 <body>
-     
+     <header class="main-nav">
+          <nav class="nav-items">
+               <a href="./../home/index.php" class="material-symbols-outlined home">home</a>
+               <?php 
+               session_start();
+               if (isset($_SESSION['id_tipo'])) {?>
+                    <a href="./../profile/profile.php" class="material-symbols-outlined profile">account_circle</a>
+               <?php }?>
+          </nav>
+     </header>
+
+     <main class="grid-my-services">
+          <div class="grid-item">
+               <?php
+               if (isset($_SESSION['id_usuario'])) {
+                    include('../../connection/connection.php');
+                    $id_usuario = $_SESSION['id_usuario'];
+
+                    $sql = 'SELECT id_solicitud FROM contratos WHERE id_usuario=?';
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param("s", $id_usuario);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    $stmt->close();
+
+                    while ($row = $result->fetch_assoc()) {
+                         $modal = $conn->query('SELECT id_servicio, descripcion FROM solicitud_servicios WHERE id_solicitud=' . $row['id_solicitud'])->fetch_assoc();
+                         $title = $conn->query('SELECT nombre_servicio FROM servicios WHERE id_servicio=' . $modal['id_servicio'])->fetch_assoc();
+
+               ?>
+                         <div class="head-modal">
+                              <h3 class="tilte-modal"><?php echo $title['nombre_servicio'] ?></h3>
+                              <button class="material-symbols-outlined delete-service">delete</button>
+                         </div>
+                         <p class="description-modal"><?php echo $modal['descripcion'] ?></p>
+               <?php }
+                    $conn->close();
+               }
+               ?>
+          </div>
+     </main>
 </body>
+
 </html>

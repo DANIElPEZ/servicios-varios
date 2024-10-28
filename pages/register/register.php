@@ -14,6 +14,7 @@ $conn->close();
 	<title>Registrarse</title>
 	<link rel="shortcut icon" href="./../../assets/favicon.ico" type="image/x-icon">
 	<link href="./../../css/register.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="./../../css/scroll_bar.css">
 </head>
 
 <body>
