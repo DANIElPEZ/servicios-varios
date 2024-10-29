@@ -57,21 +57,28 @@
                <ul class="user-aside-options">
                     <?php if (isset($_SESSION['username'])) { ?>
                          <button class="material-symbols-outlined close">close</button>
-                         <li>
+                         <li class="aside-option">
                               <a href="./../profile/profile.php" class="main_options">
                                    <span class="material-symbols-outlined">account_circle</span>
                                    <span class="profile">Perfil</span>
                               </a>
                          </li>
-                         <li>
-                              <?php if ($_SESSION['id_tipo'] == 1) { ?>
+                         <?php if ($_SESSION['id_tipo'] == 1) { ?>
+                              <li class="aside-option">
                                    <a href="./../contratos/contratos.php" class="main_options">
                                         <span class="material-symbols-outlined">format_list_bulleted</span>
                                         <span class="task">Contratos</span>
                                    </a>
-                              <?php } ?>
-                         </li>
-                    <?php } ?>
+                              </li>
+                         <?php } else { ?>
+                              <li class="aside-option">
+                                   <a href="./../servicios_page/servicios.php" class="main_options">
+                                        <span class="material-symbols-outlined">work</span>
+                                        <span class="task">Servicios</span>
+                                   </a>
+                              </li>
+                    <?php }
+                    } ?>
                </ul>
           </nav>
      </aside>
@@ -93,7 +100,7 @@
                     <div class="grid-item-buttons">
                          <button id="button" class="material-symbols-outlined" onclick="openModal('<?php echo 'infoDialog' . $modalId; ?>')">account_box</button>
                          <?php if (isset($_SESSION['username'])) {
-                              if ($_SESSION['id_tipo'] == 1) { ?>
+                              if ($_SESSION['id_tipo'] == 1 and !$row["fecha_cierre"]) { ?>
                                    <button id="buy-work" class="material-symbols-outlined" onclick="openModal('<?php echo 'formDialog' . $modalId; ?>')">shopping_cart <span><?php echo "$" . $row["precio_ofertado"] ?></span></button>
                          <?php }
                          } ?>
@@ -130,12 +137,18 @@
                               <p><?php echo $category["nombre_categoria"] ?></p>
                               <p><?php echo $ubication["pais"] . " " . $ubication["region"] . " " . $ubication["ciudad"] ?></p>
                               <p><?php echo $row["fecha_apertura"] ?></p>
+                              <p><?php if ($row["fecha_cierre"]) {
+                                   echo $row["fecha_cierre"];
+                              }else{
+                                   echo 'Abierto';
+                              }
+                              ?></p>
                               <p><?php echo $service["descripcion"] ?></p>
                          </div>
                     </dialog>
                </div>
-          <?php } 
-          $conn->close();?>
+          <?php }
+          $conn->close(); ?>
      </main>
      <script src="./../../js/modal.js"></script>
      <script src="./../../js/filter.js"></script>

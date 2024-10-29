@@ -42,7 +42,7 @@ $conn->close();
 				</a>
 				<?php
 				}else if(isset($_SESSION['id_tipo'])){ ?>
-					<a href="./../servicios/servicios.php" class="servicios">
+					<a href="./../servicios_page/servicios.php" class="servicios">
 						<span class="material-symbols-outlined">work</span>
 					</a>
 				<?php } ?>

@@ -15,44 +15,68 @@
      <header class="main-nav">
           <nav class="nav-items">
                <a href="./../home/index.php" class="material-symbols-outlined home">home</a>
-               <?php 
+               <?php
                session_start();
-               if (isset($_SESSION['id_tipo'])) {?>
+               if (isset($_SESSION['id_tipo'])) { ?>
                     <a href="./../profile/profile.php" class="material-symbols-outlined profile">account_circle</a>
-               <?php }?>
+               <?php } ?>
           </nav>
      </header>
 
      <main class="grid-my-services">
-          <div class="grid-item">
-               <?php
-               if (isset($_SESSION['id_usuario'])) {
-                    include('../../connection/connection.php');
-                    $id_usuario = $_SESSION['id_usuario'];
+          <?php
+          if (isset($_SESSION['id_usuario'])) {
+               include('../../connection/connection.php');
+               $id_usuario = $_SESSION['id_usuario'];
 
-                    $sql = 'SELECT id_solicitud FROM contratos WHERE id_usuario=?';
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bind_param("s", $id_usuario);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    $stmt->close();
+               $sql = 'SELECT id_contrato, id_solicitud FROM contratos WHERE id_usuario=?';
+               $stmt = $conn->prepare($sql);
+               $stmt->bind_param("s", $id_usuario);
+               $stmt->execute();
+               $result = $stmt->get_result();
+               $stmt->close();
 
-                    while ($row = $result->fetch_assoc()) {
-                         $modal = $conn->query('SELECT id_servicio, descripcion FROM solicitud_servicios WHERE id_solicitud=' . $row['id_solicitud'])->fetch_assoc();
-                         $title = $conn->query('SELECT nombre_servicio FROM servicios WHERE id_servicio=' . $modal['id_servicio'])->fetch_assoc();
+               while ($row = $result->fetch_assoc()) {
+                    $modal = $conn->query('SELECT id_servicio, descripcion FROM solicitud_servicios WHERE id_solicitud=' . $row['id_solicitud'])->fetch_assoc();
+                    $title = $conn->query('SELECT nombre_servicio FROM servicios WHERE id_servicio=' . $modal['id_servicio'])->fetch_assoc();
 
-               ?>
+          ?>
+                    <div class="grid-item">
                          <div class="head-modal">
-                              <h3 class="tilte-modal"><?php echo $title['nombre_servicio'] ?></h3>
-                              <button class="material-symbols-outlined delete-service">delete</button>
+                              <h4 class="tilte-modal"><?php echo $title['nombre_servicio'] ?></h4>
+                              <button class="material-symbols-outlined delete-service" data-id="<?php echo $row['id_contrato'] ?>">delete</button>
                          </div>
                          <p class="description-modal"><?php echo $modal['descripcion'] ?></p>
-               <?php }
-                    $conn->close();
-               }
-               ?>
-          </div>
+                    </div>
+          <?php }
+               $conn->close();
+          }
+          ?>
      </main>
+     <script>
+          document.querySelectorAll('.delete-service').forEach(button => {
+               button.addEventListener('click', function() {
+                    const serviceId = this.getAttribute('data-id');
+                    fetch('../servicios/delete_service.php', {
+                              method: 'POST',
+                              headers: {
+                                   'Content-Type': 'application/x-www-form-urlencoded'
+                              },
+                              body: 'id_contrato=' + serviceId
+                         })
+                         .then(response => response.json())
+                         .then(data => {
+                              if (data.success) {
+                                   // Eliminar el elemento del DOM
+                                   this.closest('.grid-item').remove();
+                              } else {
+                                   alert('Error al eliminar el servicio.');
+                              }
+                         })
+                         .catch(error => console.error('Error:', error));
+               })
+          })
+     </script>
 </body>
 
 </html>

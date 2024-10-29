@@ -136,7 +136,7 @@
   transition: translate 0.3s ease;
 }
 
-nav ul li {
+.aside-option{
   margin: 20px 0;
   display: flex;
   align-items: center;
@@ -195,12 +195,11 @@ nav ul li {
 }
 
 .servicios-grid{
-  padding: 1.4rem;
   display: grid;
-  width: calc(100%-70px);
+  padding: 1.4rem;
+  width: 100%;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
-  align-items: center;
   justify-items: center;
 }
 
@@ -218,10 +217,12 @@ nav ul li {
   >h4{
     margin-bottom: 0.6rem;
     font-weight: 800;
+    text-wrap: balance;
   }
   >p{
     font-size: 0.9rem;
     text-align: justify;
+    text-wrap: balance;
   }
 }
 
@@ -270,13 +271,13 @@ nav ul li {
   position: fixed;
   border: 0;
   border-radius: 13px;
-  top: 10%;
+  top: 5%;
   left: 35%;
   padding: 14px;
   display: flex;
   flex-direction: column;
   width: 300px;
-  height: 550px;
+  height: 620px;
   z-index: 100;
   background-color: #fff;
   transform: scale(0);
@@ -383,6 +384,19 @@ nav ul li {
 }
 
 .dialog-info p:nth-child(5) {
+  color: #2874a6;
+  font-weight: 500;
+}
+
+.dialog-info p:nth-child(5)::before {
+  content: "Fecha de Cierre:";
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #2980b9;
+}
+
+.dialog-info p:nth-child(6) {
   height: 150px;
   color: #1abc9c;
   font-weight: 400;
@@ -394,7 +408,7 @@ nav ul li {
   border: 1px solid #b3daff;
 }
 
-.dialog-info p:nth-child(5)::before {
+.dialog-info p:nth-child(6)::before {
   content: "Descripción:";
   display: block;
   font-weight: bold;
