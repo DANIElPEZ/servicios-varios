@@ -27,5 +27,35 @@
                <?php } ?>
           </nav>
      </header>
+     <main class="grid-my-services">
+          <?php
+          if (isset($_SESSION['id_usuario'])) {
+               include('../../connection/connection.php');
+               $id_usuario = $_SESSION['id_usuario'];
+
+               $sql = 'SELECT id_contrato, id_solicitud FROM contratos WHERE id_usuario=?';
+               $stmt = $conn->prepare($sql);
+               $stmt->bind_param("s", $id_usuario);
+               $stmt->execute();
+               $result = $stmt->get_result();
+               $stmt->close();
+
+               while ($row = $result->fetch_assoc()) {
+                    $modal = $conn->query('SELECT id_servicio, descripcion FROM solicitud_servicios WHERE id_solicitud=' . $row['id_solicitud'])->fetch_assoc();
+                    $title = $conn->query('SELECT nombre_servicio FROM servicios WHERE id_servicio=' . $modal['id_servicio'])->fetch_assoc();
+
+          ?>
+                    <div class="grid-item">
+                         <div class="head-modal">
+                              <h4 class="tilte-modal"><?php echo $title['nombre_servicio'] ?></h4>
+                              <button class="material-symbols-outlined delete-service" data-id="<?php echo $row['id_contrato'] ?>">delete</button>
+                         </div>
+                         <p class="description-modal"><?php echo $modal['descripcion'] ?></p>
+                    </div>
+          <?php }
+               $conn->close();
+          }
+          ?>
+     </main>
 </body>
 </html>
