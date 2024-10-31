@@ -1,8 +1,6 @@
 <?
-include('../../connection/connection.php');
-
 session_start();
-header('Content-Type: application/json');
+include('./../../connection/connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id_usuario'])) {
      $id_usuario = $_SESSION['id_usuario'];

@@ -1,5 +1,5 @@
 <?php
-include('../../connection/connection.php');
+include('./../../connection/connection.php');
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      $cantidad = $_POST['cantidad'];

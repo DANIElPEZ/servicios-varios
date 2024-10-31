@@ -1,4 +1,4 @@
-<?php include('../../connection/connection.php'); ?>
+<?php include('./../../connection/connection.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +78,7 @@
                                    </a>
                               </li>
                               <li class="aside-option">
-                                   <a href="./../servicios_page/solicitudes_worker.php" class="main_options">
+                                   <a href="./../servicios_page/solicitudes.php" class="main_options">
                                         <span class="material-symbols-outlined">work_history</span>
                                         <span class="task">Solicitudes</span>
                                    </a>
@@ -188,7 +188,7 @@
 
                     // Enviar los datos a buy_service.php usando Fetch
                     if (count > 0) {
-                         fetch('../servicios/buy_service.php', {
+                         fetch('./../servicios/buy_service.php', {
                                    method: 'POST',
                                    headers: {
                                         'Content-Type': 'application/x-www-form-urlencoded'

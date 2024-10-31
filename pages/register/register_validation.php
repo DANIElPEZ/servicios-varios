@@ -1,5 +1,5 @@
 <?php
-include('../../connection/connection.php');
+include('./../../connection/connection.php');
 
 // Recoger datos de entrada
 $name = $_POST['name'] ?? '';

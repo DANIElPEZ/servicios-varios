@@ -1,4 +1,4 @@
-<?php include('../../connection/connection.php');
+<?php include('./../../connection/connection.php');
 
 $username = $_POST['username'];
 $password = $_POST['password'];

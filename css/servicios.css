@@ -144,5 +144,5 @@
 }
 
 .open-date::before {
-  content: 'calendar_today';
+  content: 'event_available';
 }

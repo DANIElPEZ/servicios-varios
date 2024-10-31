@@ -23,7 +23,7 @@
                     <a href="./../profile/profile.php" class="profile">
                          <span class="material-symbols-outlined">account_circle</span>
                     </a>
-                    <a href="./../servicios_page/solicitudes_worker.php" class="servicios">
+                    <a href="./../servicios_page/solicitudes.php" class="servicios">
                          <span class="material-symbols-outlined">work_history</span>
                     </a>
                <?php } ?>
@@ -32,7 +32,7 @@
      <main class="grid-my-services">
           <?php
           if ($_SESSION['id_tipo'] == 2) {
-               include('../../connection/connection.php');
+               include('./../../connection/connection.php');
                $sql = 'SELECT * FROM solicitud_servicios WHERE id_usuario=?';
                $stmt = $conn->prepare($sql);
                $stmt->bind_param('s', $_SESSION['id_usuario']);
@@ -65,19 +65,24 @@
                button.addEventListener('click', function() {
                     const serviceId = this.getAttribute('data-id');
 
-                    fetch('../servicios/delete_serviceworker.php', {
+                    fetch('./../servicios/delete_serviceworker.php', {
                               method: 'POST',
                               headers: {
                                    'Content-Type': 'application/x-www-form-urlencoded'
                               },
                               body: 'id_solicitud_servicio=' + serviceId
                          })
-                         .then(response => response.json())
+                         .then(response => {
+                              if (!response.ok) {
+                                   throw new Error('Network response was not ok');
+                              }
+                              return response.json();
+                         })
                          .then(data => {
                               if (data.success) {
                                    this.closest('.grid-item').remove();
                               } else {
-                                   alert('Error al eliminar el servicio.');
+                                   alert(data.error || 'Error al eliminar el servicio.');
                               }
                          })
                          .catch(error => console.error('Error:', error));

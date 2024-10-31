@@ -1,5 +1,5 @@
 <?php
-include('../../connection/connection.php');
+include('./../../connection/connection.php');
 $sql = "SELECT * FROM ubicaciones";
 $result = $conn->query($sql);
 $conn->close();
@@ -16,14 +16,6 @@ $conn->close();
 	<link rel="stylesheet" href="./../../css/profile.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 	<link rel="stylesheet" href="./../../css/scroll_bar.css">
-	<style>
-		p {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 90dvh;
-		}
-	</style>
 </head>
 
 <body>
@@ -45,7 +37,7 @@ $conn->close();
 					<a href="./../servicios_page/servicios.php" class="servicios">
 						<span class="material-symbols-outlined">work</span>
 					</a>
-					<a href="./../servicios_page/solicitudes_worker.php" class="servicios">
+					<a href="./../servicios_page/solicitudes.php" class="servicios">
 						<span class="material-symbols-outlined">work_history</span>
 					</a>
 				<?php } ?>
@@ -125,9 +117,7 @@ $conn->close();
 				</div>
 			</form>
 		</main>
-	<?php } else { ?>
-		<p>Inicia sesion o Registrate</p>
-	<?php } ?>
+	<?php } else?>
 </body>
 
 </html>

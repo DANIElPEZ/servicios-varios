@@ -30,7 +30,7 @@
 			</div>
 			<div class="form-actions">
 				<button class="form-button">Iniciar sesion</button>
-				<a href="../register/register.php">Registrarse</a>
+				<a href="./../register/register.php">Registrarse</a>
 			</div>
 		</form>
 	</main>

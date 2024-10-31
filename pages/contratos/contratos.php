@@ -26,7 +26,7 @@
      <main class="grid-my-services">
           <?php
           if (isset($_SESSION['id_usuario'])) {
-               include('../../connection/connection.php');
+               include('./../../connection/connection.php');
                $id_usuario = $_SESSION['id_usuario'];
 
                $sql = 'SELECT id_contrato, id_solicitud FROM contratos WHERE id_usuario=?';
@@ -58,7 +58,7 @@
                button.addEventListener('click', function() {
                     const serviceId = this.getAttribute('data-id');
                     
-                    fetch('../servicios/delete_service.php', {
+                    fetch('./../servicios/delete_service.php', {
                               method: 'POST',
                               headers: {
                                    'Content-Type': 'application/x-www-form-urlencoded'

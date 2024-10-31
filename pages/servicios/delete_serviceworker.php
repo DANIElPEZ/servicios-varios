@@ -1,10 +1,11 @@
 <?php
-session_start();
-header('Content-Type: application/json');
-include('../../connection/connection.php');
-
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+header('Content-Type: application/json');
+
+session_start();
+include('./../../connection/connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id_usuario'])) {
     $id_usuario = $_SESSION['id_usuario'];
@@ -12,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id_usuario'])) {
 
     $sql = 'DELETE FROM solicitud_servicios WHERE id_solicitud = ? AND id_usuario = ?';
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $id_contrato, $id_usuario);
+    $stmt->bind_param("si", $id_contrato, $id_usuario);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true]);
@@ -23,5 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id_usuario'])) {
     $stmt->close();
     $conn->close();
 } else {
-    echo json_encode(['success' => false, 'message' => 'Acceso denegado o método incorrecto']);
+    echo json_encode(['success' => false, 'message' => 'Acceso denegado o datos insuficientes']);
+    exit;
 }

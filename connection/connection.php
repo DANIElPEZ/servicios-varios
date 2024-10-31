@@ -1,2 +1,2 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'servicios-varios');
+$conn = new mysqli('localhost', 'root', '', 'servicios_varios');
