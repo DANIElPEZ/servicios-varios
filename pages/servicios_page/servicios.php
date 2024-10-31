@@ -28,7 +28,7 @@
      </header>
      <main class="grid-my-services">
           <?php
-          if (isset($_SESSION['id_tipo'])) {
+          if ($_SESSION['id_tipo']==2) {
                include('../../connection/connection.php');
                $sql = 'SELECT * FROM solicitud_servicios WHERE id_usuario=?';
                $stmt = $conn->prepare($sql);
@@ -53,7 +53,7 @@
                               <p class="open-date"><?php echo $row['fecha_apertura'] ?></p>
                               <div class="close-date-section">
                                    <span class="material-symbols-outlined close-date-icon">event_busy</span>
-                                   <button class="close-date">Cerrar servicio</button>
+                                   <button class="close-date" data-id="<?php echo $row['id_solicitud'] ?>">Cerrar servicio</button>
                               </div>
                          </div>
                     </div>
@@ -78,7 +78,7 @@
                               if (data.success) {
                                    this.closest('.grid-item').remove();
                               } else {
-                                   alert(data.message || 'Error al eliminar el servicio.');
+                                   alert('Error al eliminar el servicio.');
                               }
                          })
                          .catch(error => console.error('Error:', error));

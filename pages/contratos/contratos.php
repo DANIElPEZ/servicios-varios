@@ -57,6 +57,7 @@
           document.querySelectorAll('.delete-service').forEach(button => {
                button.addEventListener('click', function() {
                     const serviceId = this.getAttribute('data-id');
+                    
                     fetch('../servicios/delete_service.php', {
                               method: 'POST',
                               headers: {
