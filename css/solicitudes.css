@@ -43,3 +43,106 @@
   background-color: #0056b3;
 }
 
+.grid-my-services {
+  display: grid;
+  padding: 1.4rem;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+.grid-item {
+  position: relative;
+  background-color: #176bc4;
+  width: 190px;
+  height: 190px;
+  border-radius: 14px;
+  color: #fff;
+  padding: 20px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  transition: height 0.3s ease;
+  interpolate-size: allow-keywords;
+}
+
+.grid-item:hover {
+  height: auto;
+}
+
+.head-modal {
+  display: flex;
+  margin: 0.4rem 0;
+}
+
+.tilte-modal {
+  text-wrap: balance;
+  margin-bottom: 0.6rem;
+  font-weight: 800;
+}
+
+.delete-service{
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  background-color: transparent;
+  color: #fff;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-service:hover{
+  background-color:#e23647;
+}
+
+.description-modal {
+  font-size: 0.9rem;
+  text-align: justify;
+  text-wrap: balance;
+}
+
+.main-info{
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #00448d;
+}
+
+.main-info p {
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.ubication,
+.price,
+.open-date {
+  display: flex;
+  align-items: center;
+}
+
+.ubication::before,
+.price::before,
+.open-date::before {
+  font-family: 'Material Symbols Outlined';
+  margin-right: 5px;
+  font-size: 1.7rem;
+}
+
+.ubication::before {
+  content: 'location_on';
+}
+
+.price::before {
+  content: 'attach_money';
+}
+
+.open-date::before {
+  content: 'event_available';
+}
