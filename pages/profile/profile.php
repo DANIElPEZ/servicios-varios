@@ -45,6 +45,9 @@ $conn->close();
 					<a href="./../servicios_page/servicios.php" class="servicios">
 						<span class="material-symbols-outlined">work</span>
 					</a>
+					<a href="./../servicios_page/solicitudes_worker.php" class="servicios">
+						<span class="material-symbols-outlined">work_history</span>
+					</a>
 				<?php } ?>
 			</ul>
 		</nav>

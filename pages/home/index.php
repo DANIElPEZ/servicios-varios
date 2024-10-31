@@ -77,6 +77,12 @@
                                         <span class="task">Servicios</span>
                                    </a>
                               </li>
+                              <li class="aside-option">
+                                   <a href="./../servicios_page/solicitudes_worker.php" class="main_options">
+                                        <span class="material-symbols-outlined">work_history</span>
+                                        <span class="task">Solicitudes</span>
+                                   </a>
+                              </li>
                     <?php }
                     } ?>
                </ul>

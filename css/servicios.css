@@ -25,7 +25,8 @@
 }
 
 .home,
-.profile {
+.profile,
+.servicios {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +38,8 @@
 }
 
 .home:hover,
-.profile:hover {
+.profile:hover,
+.servicios:hover {
   background-color: #0056b3;
 }
 
@@ -143,32 +145,4 @@
 
 .open-date::before {
   content: 'calendar_today';
-}
-
-.close-date-section{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.close-date-section .close-date-icon{
-  font-size: 1.7rem;
-}
-
-.close-date {
-  width: 100%;
-  margin-left: 10px;
-  color: #fff;
-  background-color: #062342;
-  border: 0;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9em;
-  padding: 7px;
-  transition: background-color 0.3s ease;
-}
-
-.close-date:hover{
-  background-color: #00ce2d;
 }
