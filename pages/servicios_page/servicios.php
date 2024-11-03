@@ -57,9 +57,62 @@
                          </div>
                     </div>
           <?php }
-               $conn->close();
           } ?>
      </main>
+     <?php
+     $title = $conn->query('SELECT id_servicio, nombre_servicio FROM servicios');
+     $ubication = $conn->query('SELECT * FROM ubicaciones');
+
+     if (isset($_SESSION['id_usuario'])) {
+     ?>
+          <section class="add-work-form">
+               <div class="set-relative">
+                    <button class="material-symbols-outlined close-add-service">close</button>
+                    <form class="form-work" action="./../servicios/add_work.php" method="post">
+                         <div class="form-component">
+                              <label for="title" class="label">Titulo:</label>
+                              <select class="input-title" name="service" id="title" required>
+                                   <?php while ($titulo = $title->fetch_assoc()) { ?>
+                                        <option value="<?php echo htmlspecialchars($titulo['id_servicio']) ?>"><?php echo htmlspecialchars($titulo['nombre_servicio']) ?></option>
+                                   <?php } ?>
+                              </select>
+                         </div>
+
+                         <div class="form-component">
+                              <label for="ubication" class="label">Ubicacion:</label>
+                              <select class="input-ubication" id="ubication" name="ubication" required>
+
+                                   <?php
+                                   while ($row = $ubication->fetch_assoc()) { ?>
+                                        <option value="<?php echo htmlspecialchars($row["id_ubicacion"]); ?>"><?php echo htmlspecialchars($row["pais"] . " " . $row["region"] . " " . $row["ciudad"]); ?></option>
+                                   <?php
+                                   }
+                                   ?>
+                              </select>
+                         </div>
+
+                         <div class="form-component">
+                              <label for="description" class="label">Descripcion:</label>
+                              <textarea class="input-description" name="description" id="description" cols="30" rows="10" required></textarea>
+                         </div>
+
+                         <div class="form-component">
+                              <label for="price" class="label">Precio de venta:</label>
+                              <input type="number" name="price" id="price" class="input-price" required>
+                         </div>
+
+                         <button class="add-work-form-btn">
+                              <span>Añadir trabajo </span>
+                              <span class="material-symbols-outlined">work</span>
+                         </button>
+                    </form>
+               </div>
+          </section>
+          <button class="add-work">
+               <span class="material-symbols-outlined">add</span>
+          </button>
+     <?php }
+     $conn->close(); ?>
      <script>
           document.querySelectorAll('.delete-service').forEach(button => {
                button.addEventListener('click', function() {
@@ -88,6 +141,14 @@
                          .catch(error => console.error('Error:', error));
                });
           });
+
+          document.querySelector('.add-work').addEventListener('click', () => {
+               document.querySelector('.add-work-form').style.display = 'flex';
+          })
+
+          document.querySelector('.close-add-service').addEventListener('click', () => {
+               document.querySelector('.add-work-form').style.display = 'none';
+          })
      </script>
 </body>
 

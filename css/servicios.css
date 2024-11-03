@@ -81,7 +81,7 @@
   font-weight: 800;
 }
 
-.delete-service{
+.delete-service {
   position: absolute;
   top: 3px;
   right: 3px;
@@ -95,8 +95,8 @@
   transition: background-color 0.3s ease;
 }
 
-.delete-service:hover{
-  background-color:#e23647;
+.delete-service:hover {
+  background-color: #e23647;
 }
 
 .description-modal {
@@ -105,7 +105,7 @@
   text-wrap: balance;
 }
 
-.main-info{
+.main-info {
   display: flex;
   flex-direction: column;
   margin-top: 15px;
@@ -130,19 +130,130 @@
 .ubication::before,
 .price::before,
 .open-date::before {
-  font-family: 'Material Symbols Outlined';
+  font-family: "Material Symbols Outlined";
   margin-right: 5px;
   font-size: 1.7rem;
 }
 
 .ubication::before {
-  content: 'location_on';
+  content: "location_on";
 }
 
 .price::before {
-  content: 'attach_money';
+  content: "attach_money";
 }
 
 .open-date::before {
-  content: 'event_available';
+  content: "event_available";
+}
+
+.add-work {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.9rem;
+  border: none;
+  outline: none;
+  width: 30px;
+  height: 30px;
+  transform: scale(1.2);
+  border-radius: 50%;
+  color: #fff;
+  background-color: rgb(25, 52, 124);
+  box-shadow: 0 0 10px #0007;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.add-work:hover {
+  transform: scale(1.4) rotate(360deg);
+}
+
+.close-add-service {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  color: #fff;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.close-add-service:hover {
+  background-color: #e23647;
+}
+
+.add-work-form {
+  position: absolute;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #0009;
+  z-index: 100;
+  top: 0;
+  left: 0;
+}
+
+.set-relative{
+  position: relative;
+}
+
+.form-work{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #bbb;
+  border-radius: 14px;
+}
+
+.label{
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-component{
+  display: flex;
+  flex-direction: column;
+}
+
+.input-title,
+.input-ubication,
+.input-description,
+.input-price{
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.input-title:focus,
+.input-ubication:focus,
+.input-description:focus,
+.input-price:focus{
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.add-work-form-btn{
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-work-form-btn:hover{
+  background-color: #0056b3;
 }
