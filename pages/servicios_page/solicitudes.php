@@ -52,7 +52,6 @@
                     <div class="grid-item">
                          <div class="head-modal">
                               <h4 class="title-modal"><?php echo $title['nombre_servicio']?></h4>
-                              <button class="material-symbols-outlined delete-service" data-id="<?php echo $row['id_contrato'] ?>">delete</button>
                          </div>
                          <p class="description-modal"><?php echo $modal['descripcion']?></p>
                          <div class="main-info">
@@ -67,35 +66,6 @@
           }
           ?>
      </main>
-     <script>
-          document.querySelectorAll('.delete-service').forEach(button => {
-               button.addEventListener('click', function() {
-                    const serviceId = this.getAttribute('data-id');
-
-                    fetch('./../servicios/close_service.php', {
-                              method: 'POST',
-                              headers: {
-                                   'Content-Type': 'application/x-www-form-urlencoded'
-                              },
-                              body: 'id_solicitud_servicio=' + serviceId
-                         })
-                         .then(response => {
-                              if (!response.ok) {
-                                   throw new Error('Network response was not ok');
-                              }
-                              return response.json();
-                         })
-                         .then(data => {
-                              if (data.success) {
-                                   this.closest('.grid-item').remove();
-                              } else {
-                                   alert(data.error || 'Error al eliminar el servicio.');
-                              }
-                         })
-                         .catch(error => console.error('Error:', error));
-               });
-          });
-     </script>
 </body>
 
 </html>

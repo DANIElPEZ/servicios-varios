@@ -40,11 +40,14 @@
                $result = $stmt->get_result();
 
                while ($row = $result->fetch_assoc()) {
-                    $service = $conn->query('SELECT nombre_servicio FROM servicios WHERE id_servicio=' . $row["id_servicio"])->fetch_assoc(); ?>
+                    $service = $conn->query('SELECT nombre_servicio FROM servicios WHERE id_servicio=' . $row["id_servicio"])->fetch_assoc();
+                    $check_contratos = $conn->query('SELECT * FROM contratos WHERE id_solicitud=' . $row['id_solicitud']) ?>
                     <div class="grid-item">
                          <div class="head-modal">
                               <h4 class="title-service"><?php echo $service['nombre_servicio'] ?></h4>
-                              <button class="material-symbols-outlined delete-service" data-id="<?php echo $row['id_solicitud'] ?>">delete</button>
+                              <?php if ($check_contratos->num_rows === 0) { ?>
+                                   <button class="material-symbols-outlined delete-service" data-id="<?php echo $row['id_solicitud'] ?>">delete</button>
+                              <?php } ?>
                          </div>
                          <p class="description-modal"><?php echo $row['descripcion'] ?></p>
                          <div class="main-info">
@@ -116,29 +119,29 @@
      <script>
           document.querySelectorAll('.delete-service').forEach(button => {
                button.addEventListener('click', function() {
-                    const serviceId = this.getAttribute('data-id');
+                    const serviceid = this.getAttribute('data-id');
 
-                    fetch('./../servicios/delete_serviceworker.php', {
+                    fetch('./../servicios/delete_service_worker.php', {
                               method: 'POST',
                               headers: {
                                    'Content-Type': 'application/x-www-form-urlencoded'
                               },
-                              body: 'id_solicitud_servicio=' + serviceId
+                              body: 'id_solicitud_servicio=' + serviceid
                          })
-                         .then(response => {
-                              if (!response.ok) {
-                                   throw new Error('Network response was not ok');
+                         .then(response => response.text())
+                         .then(text => {
+                              try {
+                                   const data = JSON.parse(text);
+                                   if (data.success) {
+                                        button.closest('.grid-item').remove();
+                                   } else {
+                                        alert(data.error || 'Error al eliminar el servicio.');
+                                   }
+                              } catch (error) {
+                                   console.error('Parsing error:', error, 'Response was:', text);
                               }
-                              return response.json();
                          })
-                         .then(data => {
-                              if (data.success) {
-                                   this.closest('.grid-item').remove();
-                              } else {
-                                   alert(data.error || 'Error al eliminar el servicio.');
-                              }
-                         })
-                         .catch(error => console.error('Error:', error));
+                         .catch(error => console.error('Fetch error:', error));
                });
           });
 

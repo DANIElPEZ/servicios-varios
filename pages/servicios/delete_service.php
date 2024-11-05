@@ -21,3 +21,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['id_usuario'])){
 }else{
      echo json_encode(['success' => false]);
 }
+?>

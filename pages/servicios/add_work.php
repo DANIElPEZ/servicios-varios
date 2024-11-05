@@ -41,3 +41,4 @@ if ($validation === 0) {
 }
 
 $conn->close();
+?>
