@@ -14,7 +14,7 @@
 <body>
      <header class="main-nav">
           <nav class="nav-items">
-               <a href="./../home/index.php" class="home">
+               <a href="./../../index.php" class="home">
                     <span class="material-symbols-outlined">home</span>
                </a>
                <?php

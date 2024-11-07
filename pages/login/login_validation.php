@@ -27,8 +27,11 @@ if ($result->num_rows > 0) {
           $_SESSION['id_tipo'] = $row['id_tipo'];
           $_SESSION['id_ubicacion'] = $row['id_ubicacion'];
 
-          // Contraseña correcta, redirigir al usuario
-          header('Location: ../../pages/home/index.php');
+          if ($_SESSION['id_tipo']===3) {
+               header('Location: ../admin/admin.php');
+          }else{
+               header('Location: ../../index.php');
+          }
           exit();
      } else {
           // Contraseña incorrecta

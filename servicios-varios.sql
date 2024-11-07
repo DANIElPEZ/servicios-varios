@@ -83,7 +83,8 @@ INSERT INTO categorias (nombre_categoria, descripcion) VALUES
 
 INSERT INTO tipos (nombre_tipo) VALUES
 ('Usuario'),
-('Trabajador');
+('Trabajador'),
+('Administrador');
 
 INSERT INTO ubicaciones (pais, region, ciudad) VALUES
 ('Colombia', 'Cundinamarca', 'Bogota'),

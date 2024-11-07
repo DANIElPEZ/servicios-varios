@@ -14,7 +14,7 @@
 <body>
      <header class="main-nav">
           <nav class="nav-items">
-               <a href="./../home/index.php" class="material-symbols-outlined home">home</a>
+               <a href="./../../index.php" class="material-symbols-outlined home">home</a>
                <?php
                session_start();
                if (isset($_SESSION['id_tipo'])) { ?>

@@ -1,4 +1,4 @@
-<?php include('./../../connection/connection.php'); ?>
+<?php include('./connection/connection.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,11 +6,11 @@
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Servicios varios</title>
-     <link rel="shortcut icon" href="./../../assets/favicon.ico" type="image/x-icon">
+     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-     <link rel="stylesheet" href="./../../css/index.css">
-     <link rel="stylesheet" href="./../../css/scroll_bar.css">
-     <script type="module" src="./../../js/menu.js"></script>
+     <link rel="stylesheet" href="./css/index.css">
+     <link rel="stylesheet" href="./css/scroll_bar.css">
+     <script type="module" src="./js/menu.js"></script>
 </head>
 
 <body>
@@ -25,18 +25,18 @@
                          <li class="main-search">
                               <input type="text" placeholder="Buscar servicio" class="main-input">
                               <?php if (!isset($_SESSION['username'])) { ?>
-                                   <a href="./aviso.html" class="important">Leer antes de usar</a>
+                                   <a href="./pages/home/aviso.html" class="important">Leer antes de usar</a>
                               <?php } ?>
                          </li>
                     </div>
                     <?php
                     if (!isset($_SESSION['username'])) { ?>
                          <div class="main-user-buttons">
-                              <a class="header_main_options" href="./../register/register.php">
+                              <a class="header_main_options" href="./pages/register/register.php">
                                    <span class="material-symbols-outlined">person_add</span>
                                    <span>Registrarse</span>
                               </a>
-                              <a class="header_main_options" href="./../login/login.php">
+                              <a class="header_main_options" href="./pages/login/login.php">
                                    <span class="material-symbols-outlined">login</span>
                                    <span>Iniciar sesion</span>
                               </a>
@@ -45,9 +45,9 @@
                          <div class="user-visual-options">
                               <div class="user-visual">
                                    <h4 class="username"><?php echo $_SESSION['username'] ?></h4>
-                                   <img class="img-username" src="./../../assets/DNV.png" alt="perfil de ejemplo">
+                                   <img class="img-username" src="./assets/DNV.png" alt="perfil de ejemplo">
                               </div>
-                              <form action="./../../connection/logout.php">
+                              <form action="./connection/logout.php">
                                    <button class="material-symbols-outlined user-logout">logout</button>
                               </form>
                          </div>
@@ -61,27 +61,27 @@
                     <?php if (isset($_SESSION['username'])) { ?>
                          <button class="material-symbols-outlined close">close</button>
                          <li class="aside-option">
-                              <a href="./../profile/profile.php" class="main_options">
+                              <a href="./pages/profile/profile.php" class="main_options">
                                    <span class="material-symbols-outlined">account_circle</span>
                                    <span class="profile">Perfil</span>
                               </a>
                          </li>
                          <?php if ($_SESSION['id_tipo'] == 1) { ?>
                               <li class="aside-option">
-                                   <a href="./../contratos/contratos.php" class="main_options">
+                                   <a href="./pages/contratos/contratos.php" class="main_options">
                                         <span class="material-symbols-outlined">format_list_bulleted</span>
                                         <span class="task">Contratos</span>
                                    </a>
                               </li>
                          <?php } else { ?>
                               <li class="aside-option">
-                                   <a href="./../servicios_page/servicios.php" class="main_options">
+                                   <a href="./pages/servicios_page/servicios.php" class="main_options">
                                         <span class="material-symbols-outlined">work</span>
                                         <span class="task">Servicios</span>
                                    </a>
                               </li>
                               <li class="aside-option">
-                                   <a href="./../servicios_page/solicitudes.php" class="main_options">
+                                   <a href="./pages/servicios_page/solicitudes.php" class="main_options">
                                         <span class="material-symbols-outlined">work_history</span>
                                         <span class="task">Solicitudes</span>
                                    </a>
@@ -107,10 +107,10 @@
                     <h4><?php echo $service["nombre_servicio"] ?></h4>
                     <p><?php echo $row["descripcion"] ?></p>
                     <div class="grid-item-buttons">
-                         <button id="button" class="material-symbols-outlined" onclick="openModal('<?php echo 'infoDialog' . $modalId; ?>')">account_box</button>
+                         <button id="button" class="material-symbols-outlined" onclick="openModal('<?php echo 'infoDialog' . $modalId; ?>')">account_box <span>Ver mas</span></button>
                          <?php if (isset($_SESSION['username'])) {
                               if ($_SESSION['id_tipo'] == 1 and !$row["fecha_cierre"]) { ?>
-                                   <button id="buy-work" class="material-symbols-outlined" onclick="openModal('<?php echo 'formDialog' . $modalId; ?>')">shopping_cart <span><?php echo "$" . $row["precio_ofertado"] ?></span></button>
+                                   <button id="buy-work" class="material-symbols-outlined" onclick="openModal('<?php echo 'formDialog' . $modalId; ?>')">shopping_cart <span><?php echo 'Comprar '."$" . $row["precio_ofertado"] ?></span></button>
                          <?php }
                          } ?>
                     </div>
@@ -159,8 +159,8 @@
           <?php }
           $conn->close(); ?>
      </main>
-     <script src="./../../js/modal.js"></script>
-     <script src="./../../js/filter.js"></script>
+     <script src="./js/modal.js"></script>
+     <script src="./js/filter.js"></script>
      <script>
           document.querySelectorAll('.add').forEach((addButton, index) => {
                addButton.addEventListener('click', (event) => {
@@ -191,7 +191,7 @@
 
                     // Enviar los datos a buy_service.php usando Fetch
                     if (count > 0) {
-                         fetch('./../servicios/buy_service.php', {
+                         fetch('./pages/servicios/buy_service.php', {
                                    method: 'POST',
                                    headers: {
                                         'Content-Type': 'application/x-www-form-urlencoded'

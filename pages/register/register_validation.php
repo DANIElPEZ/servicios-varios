@@ -36,7 +36,7 @@ if ($validation === 0) {
           $stmt->execute();
           $stmt->close();
 
-          header('Location: ../../pages/home/index.php');
+          header('Location: ../../index.php');
           exit();
      } else {
           // Manejo de error en la preparación de la consulta

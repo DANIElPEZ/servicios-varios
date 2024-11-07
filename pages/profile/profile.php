@@ -22,7 +22,7 @@ $conn->close();
 	<header class="nav-options">
 		<nav>
 			<ul>
-				<a href="./../home/index.php" class="home">
+				<a href="./../../index.php" class="home">
 					<span class="material-symbols-outlined">home</span>
 				</a>
 				<?php 
