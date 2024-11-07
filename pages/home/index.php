@@ -24,6 +24,9 @@
                          <?php } ?>
                          <li class="main-search">
                               <input type="text" placeholder="Buscar servicio" class="main-input">
+                              <?php if (!isset($_SESSION['username'])) { ?>
+                                   <a href="./aviso.html" class="important">Leer antes de usar</a>
+                              <?php } ?>
                          </li>
                     </div>
                     <?php
@@ -144,11 +147,11 @@
                               <p><?php echo $ubication["pais"] . " " . $ubication["region"] . " " . $ubication["ciudad"] ?></p>
                               <p><?php echo $row["fecha_apertura"] ?></p>
                               <p><?php if ($row["fecha_cierre"]) {
-                                   echo $row["fecha_cierre"];
-                              }else{
-                                   echo 'Abierto';
-                              }
-                              ?></p>
+                                        echo $row["fecha_cierre"];
+                                   } else {
+                                        echo 'Abierto';
+                                   }
+                                   ?></p>
                               <p><?php echo $service["descripcion"] ?></p>
                          </div>
                     </dialog>

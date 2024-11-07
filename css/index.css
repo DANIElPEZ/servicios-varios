@@ -29,6 +29,11 @@
   width: 100%;
 }
 
+.important{
+  color: #fff;
+  text-decoration: underline;
+}
+
 .header-main-options,
 .main-user-buttons{
   display: flex;

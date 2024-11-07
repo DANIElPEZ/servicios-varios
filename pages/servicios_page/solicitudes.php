@@ -36,7 +36,7 @@
                $id_usuario = $_SESSION['id_usuario'];
 
                // Consulta SQL para obtener coincidencias entre solicitud_servicios y contratos
-               $sql = "SELECT c.* FROM solicitud_servicios AS s INNER JOIN contratos AS c ON s.id_solicitud = c.id_solicitud WHERE s.id_usuario = ?";
+               $sql = "SELECT c.* FROM contratos AS c INNER JOIN solicitud_servicios AS s ON s.id_solicitud = c.id_solicitud WHERE s.id_usuario = ?";
                $stmt = $conn->prepare($sql);
                $stmt->bind_param("s", $id_usuario);
                $stmt->execute();
@@ -45,9 +45,12 @@
                while ($row = $result->fetch_assoc()) { 
                     //lenando modal
                     $id_solicitud=$row['id_solicitud'];
-                    $modal=$conn->query('SELECT fecha_apertura, precio_ofertado, descripcion, id_servicio, id_ubicacion FROM solicitud_servicios WHERE id_solicitud='.$id_solicitud)->fetch_assoc();
+                    $modal=$conn->query('SELECT fecha_apertura, precio_ofertado, descripcion, id_servicio FROM solicitud_servicios WHERE id_solicitud='.$id_solicitud)->fetch_assoc();
                     $title=$conn->query('SELECT nombre_servicio FROM servicios WHERE id_servicio='.$modal['id_servicio'])->fetch_assoc();
-                    $ubication=$conn->query('SELECT pais, region, ciudad FROM ubicaciones WHERE id_ubicacion='.$modal['id_ubicacion'])->fetch_assoc();
+                    
+                    $id_usuario=$row['id_usuario'];
+                    $user_data=$conn->query('SELECT nombre, apellido, correo, telefono, direccion, id_ubicacion FROM usuarios WHERE id_usuario='.$id_usuario)->fetch_assoc();
+                    $ubication=$conn->query('SELECT pais, region, ciudad FROM ubicaciones WHERE id_ubicacion='.$user_data['id_ubicacion'])->fetch_assoc();
                     ?>
                     <div class="grid-item">
                          <div class="head-modal">
@@ -55,9 +58,13 @@
                          </div>
                          <p class="description-modal"><?php echo $modal['descripcion']?></p>
                          <div class="main-info">
-                              <p class="ubication"><?php echo $ubication['pais'].' '.$ubication['region'].' '.$ubication['ciudad']?></p>
                               <p class="price"><?php echo $modal['precio_ofertado']?></p>
                               <p class="open-date"><?php echo $modal['fecha_apertura']?></p>
+                              <p class="user-data">Datos del usuario:</p>
+                              <p class="name-user"><?php echo $user_data['nombre'].' '.$user_data['apellido']?></p>
+                              <p class="email"><?php echo $user_data['correo']?></p>
+                              <p class="phone"><?php echo $user_data['telefono']?></p>
+                              <p class="ubication"><?php echo $ubication['pais'].' '.$ubication['region'].' '.$ubication['ciudad']?></p>
                          </div>
                     </div>
           <?php }

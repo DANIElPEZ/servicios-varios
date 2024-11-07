@@ -120,16 +120,26 @@
   line-height: 1.4;
 }
 
-.ubication,
 .price,
-.open-date {
+.open-date,
+.user-data,
+.email,
+.phone,
+.name-user, 
+.ubication {
   display: flex;
   align-items: center;
+  overflow-wrap: anywhere;
 }
 
-.ubication::before,
 .price::before,
-.open-date::before {
+.open-date::before,
+.user-data::before,
+.email::before,
+.phone::before,
+.name-user::before,
+.ubication::before
+{
   font-family: 'Material Symbols Outlined';
   margin-right: 5px;
   font-size: 1.7rem;
@@ -145,4 +155,20 @@
 
 .open-date::before {
   content: 'event_available';
+}
+
+.user-data::before{
+  content: 'person';
+}
+
+.email::before{
+  content: 'mail';
+}
+
+.phone::before{
+  content: 'call';
+}
+
+.name-user::before{
+  content: 'id_card';
 }
