@@ -70,7 +70,7 @@
                               <li class="aside-option">
                                    <a href="./pages/contratos/contratos.php" class="main_options">
                                         <span class="material-symbols-outlined">format_list_bulleted</span>
-                                        <span class="task">Contratos</span>
+                                        <span class="task">Mis servicios</span>
                                    </a>
                               </li>
                          <?php } else { ?>
