@@ -19,7 +19,7 @@
                <ul class="header_nav_list">
                     <div class="header-main-options">
                          <?php session_start();
-                         if (isset($_SESSION['username'])) { ?>
+                         if (isset($_SESSION['id_tipo']) && ($_SESSION['id_tipo']==1 || $_SESSION['id_tipo']==2)) { ?>
                               <button class="material-symbols-outlined menu">menu</button>
                          <?php } ?>
                          <li class="main-search">
@@ -58,7 +58,7 @@
      <aside class="main-section">
           <nav>
                <ul class="user-aside-options">
-                    <?php if (isset($_SESSION['username'])) { ?>
+                    <?php if (isset($_SESSION['id_tipo']) && ($_SESSION['id_tipo']==1 || $_SESSION['id_tipo']==2)) { ?>
                          <button class="material-symbols-outlined close">close</button>
                          <li class="aside-option">
                               <a href="./pages/profile/profile.php" class="main_options">

@@ -33,7 +33,7 @@ $conn->close();
 					<span class="material-symbols-outlined">format_list_bulleted</span>
 				</a>
 				<?php
-				}else if(isset($_SESSION['id_tipo'])){ ?>
+				}else if(isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==2){ ?>
 					<a href="./../servicios_page/servicios.php" class="servicios">
 						<span class="material-symbols-outlined">work</span>
 					</a>
@@ -45,7 +45,7 @@ $conn->close();
 		</nav>
 	</header>
 	<?php
-	if (isset($_SESSION['username'])) { ?>
+	if (isset($_SESSION['id_tipo']) && ($_SESSION['id_tipo']==1 || $_SESSION['id_tipo']==2)) { ?>
 		<main class="profile">
 			<h2>Editar perfil</h2>
 
@@ -117,7 +117,7 @@ $conn->close();
 				</div>
 			</form>
 		</main>
-	<?php } else?>
+	<?php }?>
 </body>
 
 </html>

@@ -17,7 +17,7 @@
                <a href="./../../index.php" class="material-symbols-outlined home">home</a>
                <?php
                session_start();
-               if (isset($_SESSION['id_tipo'])) { ?>
+               if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==1) { ?>
                     <a href="./../profile/profile.php" class="material-symbols-outlined profile">account_circle</a>
                <?php } ?>
           </nav>
@@ -25,7 +25,7 @@
 
      <main class="grid-my-services">
           <?php
-          if (isset($_SESSION['id_usuario'])) {
+          if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==1) {
                include('./../../connection/connection.php');
                $id_usuario = $_SESSION['id_usuario'];
 

@@ -19,7 +19,7 @@
                </a>
                <?php
                session_start();
-               if (isset($_SESSION['id_tipo'])) { ?>
+               if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==2) { ?>
                     <a href="./../profile/profile.php" class="profile">
                          <span class="material-symbols-outlined">account_circle</span>
                     </a>
@@ -31,8 +31,8 @@
      </header>
      <main class="grid-my-services">
           <?php
-          if ($_SESSION['id_tipo'] == 2) {
-               include('./../../connection/connection.php');
+          include('./../../connection/connection.php');
+          if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==2) {
                $sql = 'SELECT * FROM solicitud_servicios WHERE id_usuario=?';
                $stmt = $conn->prepare($sql);
                $stmt->bind_param('s', $_SESSION['id_usuario']);
@@ -63,10 +63,9 @@
           } ?>
      </main>
      <?php
+     if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==2) {
      $title = $conn->query('SELECT id_servicio, nombre_servicio FROM servicios');
      $ubication = $conn->query('SELECT * FROM ubicaciones');
-
-     if (isset($_SESSION['id_usuario'])) {
      ?>
           <section class="add-work-form">
                <div class="set-relative">
@@ -84,7 +83,6 @@
                          <div class="form-component">
                               <label for="ubication" class="label">Ubicacion:</label>
                               <select class="input-ubication" id="ubication" name="ubication" required>
-
                                    <?php
                                    while ($row = $ubication->fetch_assoc()) { ?>
                                         <option value="<?php echo htmlspecialchars($row["id_ubicacion"]); ?>"><?php echo htmlspecialchars($row["pais"] . " " . $row["region"] . " " . $row["ciudad"]); ?></option>

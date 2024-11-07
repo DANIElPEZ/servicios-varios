@@ -19,7 +19,7 @@
                </a>
                <?php
                session_start();
-               if (isset($_SESSION['id_tipo'])) { ?>
+               if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==2) { ?>
                     <a href="./../profile/profile.php" class="profile">
                          <span class="material-symbols-outlined">account_circle</span>
                     </a>
@@ -31,7 +31,7 @@
      </header>
      <main class="grid-my-services">
           <?php
-          if (isset($_SESSION['id_usuario'])) {
+          if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==2) {
                include('./../../connection/connection.php');
                $id_usuario = $_SESSION['id_usuario'];
 
