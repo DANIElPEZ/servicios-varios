@@ -9,23 +9,30 @@
      <link rel="shortcut icon" href="./../../assets/favicon.ico" type="image/x-icon">
      <link rel="stylesheet" href="./../../css/contratos.css">
      <link rel="stylesheet" href="./../../css/scroll_bar.css">
+     <link rel="stylesheet" href="./../../css/tooltip.css">
 </head>
 
 <body>
      <header class="main-nav">
           <nav class="nav-items">
-               <a href="./../../index.php" class="material-symbols-outlined home">home</a>
+               <a href="./../../index.php" class="home tooltip">
+                    <span class="tooltiptext">Inicio</span>
+                    <span class="material-symbols-outlined">home</span>
+               </a>
                <?php
                session_start();
-               if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==1) { ?>
-                    <a href="./../profile/profile.php" class="material-symbols-outlined profile">account_circle</a>
+               if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo'] == 1) { ?>
+                    <a href="./../profile/profile.php" class="profile tooltip">
+                         <span class="tooltiptext">Inicio</span>
+                         <span class="material-symbols-outlined">account_circle</span>
+                    </a>
                <?php } ?>
           </nav>
      </header>
 
      <main class="grid-my-services">
           <?php
-          if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==1) {
+          if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo'] == 1) {
                include('./../../connection/connection.php');
                $id_usuario = $_SESSION['id_usuario'];
 
@@ -57,7 +64,7 @@
           document.querySelectorAll('.delete-service').forEach(button => {
                button.addEventListener('click', function() {
                     const serviceId = this.getAttribute('data-id');
-                    
+
                     fetch('./../servicios/delete_service.php', {
                               method: 'POST',
                               headers: {

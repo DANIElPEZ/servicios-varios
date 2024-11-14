@@ -16,28 +16,33 @@ $conn->close();
 	<link rel="stylesheet" href="./../../css/profile.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 	<link rel="stylesheet" href="./../../css/scroll_bar.css">
+	<link rel="stylesheet" href="./../../css/tooltip.css">
 </head>
 
 <body>
 	<header class="nav-options">
 		<nav>
 			<ul>
-				<a href="./../../index.php" class="home">
+				<a href="./../../index.php" class="home tooltip">
+					<span class="tooltiptext">Inicio</span>
 					<span class="material-symbols-outlined">home</span>
 				</a>
-				<?php 
-				session_start();
-				if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==1) { 
-				?>
-				<a href="./../contratos/contratos.php" class="contratos">
-					<span class="material-symbols-outlined">format_list_bulleted</span>
-				</a>
 				<?php
-				}else if(isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==2){ ?>
-					<a href="./../servicios_page/servicios.php" class="servicios">
+				session_start();
+				if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo'] == 1) {
+				?>
+					<a href="./../contratos/contratos.php" class="contratos tooltip">
+						<span class="tooltiptext">Contratos</span>
+						<span class="material-symbols-outlined">format_list_bulleted</span>
+					</a>
+				<?php
+				} else if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo'] == 2) { ?>
+					<a href="./../servicios_page/servicios.php" class="servicios tooltip">
+						<span class="tooltiptext">Servicios</span>
 						<span class="material-symbols-outlined">work</span>
 					</a>
-					<a href="./../servicios_page/solicitudes.php" class="servicios">
+					<a href="./../servicios_page/solicitudes.php" class="servicios tooltip">
+						<span class="tooltiptext">Solicitudes</span>
 						<span class="material-symbols-outlined">work_history</span>
 					</a>
 				<?php } ?>
@@ -45,7 +50,7 @@ $conn->close();
 		</nav>
 	</header>
 	<?php
-	if (isset($_SESSION['id_tipo']) && ($_SESSION['id_tipo']==1 || $_SESSION['id_tipo']==2)) { ?>
+	if (isset($_SESSION['id_tipo']) && ($_SESSION['id_tipo'] == 1 || $_SESSION['id_tipo'] == 2)) { ?>
 		<main class="profile">
 			<h2>Editar perfil</h2>
 
@@ -117,7 +122,7 @@ $conn->close();
 				</div>
 			</form>
 		</main>
-	<?php }?>
+	<?php } ?>
 </body>
 
 </html>

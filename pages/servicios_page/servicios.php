@@ -7,6 +7,7 @@
      <title>Servicios</title>
      <link rel="stylesheet" href="./../../css/servicios.css">
      <link rel="stylesheet" href="./../../css/scroll_bar.css">
+     <link rel="stylesheet" href="./../../css/tooltip.css">
      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
      <link rel="shortcut icon" href="./../../assets/favicon.ico" type="image/x-icon">
 </head>
@@ -14,16 +15,19 @@
 <body>
      <header class="main-nav">
           <nav class="nav-items">
-               <a href="./../../index.php" class="home">
+               <a href="./../../index.php" class="home tooltip">
+                    <span class="tooltiptext">Inicio</span>
                     <span class="material-symbols-outlined">home</span>
                </a>
                <?php
                session_start();
-               if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==2) { ?>
-                    <a href="./../profile/profile.php" class="profile">
+               if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo'] == 2) { ?>
+                    <a href="./../profile/profile.php" class="profile tooltip">
+                         <span class="tooltiptext">Perfil</span>
                          <span class="material-symbols-outlined">account_circle</span>
                     </a>
-                    <a href="./../servicios_page/solicitudes.php" class="servicios">
+                    <a href="./../servicios_page/solicitudes.php" class="servicios tooltip">
+                         <span class="tooltiptext">Solicitudes</span>
                          <span class="material-symbols-outlined">work_history</span>
                     </a>
                <?php } ?>
@@ -32,7 +36,7 @@
      <main class="grid-my-services">
           <?php
           include('./../../connection/connection.php');
-          if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==2) {
+          if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo'] == 2) {
                $sql = 'SELECT * FROM solicitud_servicios WHERE id_usuario=?';
                $stmt = $conn->prepare($sql);
                $stmt->bind_param('s', $_SESSION['id_usuario']);
@@ -63,9 +67,9 @@
           } ?>
      </main>
      <?php
-     if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo']==2) {
-     $title = $conn->query('SELECT id_servicio, nombre_servicio FROM servicios');
-     $ubication = $conn->query('SELECT * FROM ubicaciones');
+     if (isset($_SESSION['id_tipo']) && $_SESSION['id_tipo'] == 2) {
+          $title = $conn->query('SELECT id_servicio, nombre_servicio FROM servicios');
+          $ubication = $conn->query('SELECT * FROM ubicaciones');
      ?>
           <section class="add-work-form">
                <div class="set-relative">
